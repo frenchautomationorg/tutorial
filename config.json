@@ -2,33 +2,26 @@
 	"ignoreList": [
 		"/static-resources"
 	],
-	"firstStep": "start",
-	"steps": {
-		"start": {
-			"type": "script",
-			"startWith": {
-				"url": "http://sirene.fr/sirene/public/accueil",
-				"method": "GET"
-			},
-			"snippet": "script/step01.js",
-			"endType": "url",
-			"endWith": {
-				"url": "http://sirene.fr/sirene/public/recherche",
-				"method": "POST"
-			},
-			"next": "extractData"
+	"steps": [{
+		"type": "script",
+		"startWith": {
+			"url": "http://sirene.fr/sirene/public/accueil",
+			"method": "GET"
 		},
-		"extractData": {
-			"type": "script",
-			"snippet": "script/step02.js",
-			"endType": "script",
-			"next": "updateAPI"
-		},
-		"updateAPI": {
-			"type": "sequence",
-			"timeout": 10000,
-			"snippet": "sequence/sequence01.js",
-			"endType": "script"
+		"snippet": "script/step01.js",
+		"endType": "url",
+		"endWith": {
+			"url": "http://sirene.fr/sirene/public/recherche",
+			"method": "POST"
 		}
-	}
+	}, {
+		"type": "script",
+		"snippet": "script/step02.js",
+		"endType": "snippet"
+	}, {
+		"type": "sequence",
+		"timeout": 10000,
+		"snippet": "sequence/sequence01.js",
+		"endType": "snippet"
+	}]
 }
